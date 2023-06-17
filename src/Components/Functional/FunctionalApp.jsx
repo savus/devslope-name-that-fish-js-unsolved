@@ -25,10 +25,10 @@ const initialFishes = [
 
 export function FunctionalApp() {
   const [userInformation, setUserInformation] = useState({
-    incorrect:0,
-    correct:0,
-    index:0
-  })
+    fishIndex:0,
+    incorrectGuesses:0,
+    correctGuesses:0
+  });
   return (
     <>
       <FunctionalScoreBoard />
