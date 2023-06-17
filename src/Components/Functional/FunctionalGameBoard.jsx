@@ -1,26 +1,8 @@
 import "./styles/game-board.css";
-import { Images } from "../../assets/Images";
 
-const initialFishes = [
-  {
-    name: "trout",
-    url: Images.trout,
-  },
-  {
-    name: "salmon",
-    url: Images.salmon,
-  },
-  {
-    name: "tuna",
-    url: Images.tuna,
-  },
-  {
-    name: "shark",
-    url: Images.shark,
-  },
-];
 
-export function FunctionalGameBoard() {
+
+export function FunctionalGameBoard({initialFishes, handleUserInformation}) {
   const nextFishToName = initialFishes[0];
   return (
     <div id="game-board">
