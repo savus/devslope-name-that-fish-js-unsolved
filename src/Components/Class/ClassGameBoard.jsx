@@ -7,15 +7,17 @@ export class ClassGameBoard extends Component {
     userInput:''
   };
   render() {
-    const initialFishes = this.props.initialFishes;
     const {
-      fishIndex,
-      correctAnswers,
-      incorrectAnswers,
-      answersLeft
-    } = this.props.userInformation;
-    const handleUserInformation = this.props.handleUserInformation;
-    const areStillAnswers = this.props.areStillAnswers;
+      initialFishes,
+      areStillAnswers,
+      handleUserInformation,
+      userInformation: {
+        fishIndex,
+        correctAnswers,
+        incorrectAnswers,
+        answersLeft
+      }
+    } = this.props;
     const nextFishToName = initialFishes[fishIndex];
     const {userInput} = this.state;
     this.isLastFish = () => fishIndex === initialFishes.length - 1;
