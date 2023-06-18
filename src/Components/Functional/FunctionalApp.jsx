@@ -26,17 +26,21 @@ const initialFishes = [
 export function FunctionalApp() {
   const [userInformation, setUserInformation] = useState({
     fishIndex:0,
+    correctGuesses:0,
     incorrectGuesses:0,
-    correctGuesses:0
+    answersLeft: initialFishes.length
   });
   return (
     <>
-      <FunctionalScoreBoard />
+      <FunctionalScoreBoard 
+        initialFishes={initialFishes}
+        userInformation={userInformation}
+      />
       <FunctionalGameBoard 
         initialFishes={initialFishes}
         userInformation={userInformation}
         handleUserInformation={(userInformation) => {
-          setUserInformation(userInformation)
+          setUserInformation(userInformation);
         }}
       />
       {false && <FunctionalFinalScore />}
