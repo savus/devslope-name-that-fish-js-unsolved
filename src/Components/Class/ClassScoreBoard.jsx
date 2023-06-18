@@ -3,7 +3,7 @@ import "./styles/score-board.css";
 
 export class ClassScoreBoard extends Component {
   render() {
-    const {incorrectAnswers, correctAnswers, fishIndex, initialFishes} = this.props;
+    const {userInformation:{incorrectAnswers, correctAnswers, fishIndex}, initialFishes} = this.props;
     const answersLeft = initialFishes
       .map((fish) => fish.name)
       .slice(fishIndex);

@@ -36,14 +36,12 @@ export function FunctionalApp() {
 
   return (
     <>
-      {
+      {areStillAnswers(userInformation.answersLeft) &&
         <FunctionalScoreBoard 
-          incorrectAnswers={userInformation.incorrectAnswers}
-          correctAnswers={userInformation.correctAnswers}
-          fishIndex={userInformation.fishIndex}
+          userInformation={userInformation}
           initialFishes={initialFishes}
         />}
-      {
+      {areStillAnswers(userInformation.answersLeft) &&
         <FunctionalGameBoard 
           initialFishes={initialFishes}
           userInformation={userInformation}
@@ -53,7 +51,11 @@ export function FunctionalApp() {
           areStillAnswers={areStillAnswers}
         />
       }
-      {/* {!areStillAnswers(userInformation.answersLeft) && (<FunctionalFinalScore />)} */}
+      {!areStillAnswers(userInformation.answersLeft) && 
+        (<FunctionalFinalScore 
+          correctAnswers={userInformation.correctAnswers}
+          totalCount={initialFishes.length}
+        />)}
     </>
   );
 }

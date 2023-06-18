@@ -33,17 +33,16 @@ export class ClassApp extends Component {
 
   areStillAnswers = (num) => num > 0;
   render() {
-    const {incorrectAnswers, correctAnswers, fishIndex} = this.state;
     return (
       <>
         <>
-          {<ClassScoreBoard
+          {this.areStillAnswers(this.state.answersLeft) &&
+          <ClassScoreBoard
             initialFishes={initialFishes}
-            incorrectAnswers={incorrectAnswers}
-            correctAnswers={correctAnswers}
-            fishIndex={fishIndex}
+            userInformation={this.state}
           />}
-          {<ClassGameBoard 
+          {this.areStillAnswers(this.state.answersLeft) &&
+          <ClassGameBoard 
             initialFishes={initialFishes}
             userInformation={this.state}
             handleUserInformation={(userInformation) => {
@@ -52,7 +51,11 @@ export class ClassApp extends Component {
             areStillAnswers={this.areStillAnswers}
           />}
         </>
-        {false && (<ClassFinalScore />)}
+        {!this.areStillAnswers(this.state.answersLeft) && 
+        (<ClassFinalScore 
+          correctAnswers={this.state.correctAnswers}
+          totalCount={initialFishes.length}
+        />)}
       </>
     );
   }

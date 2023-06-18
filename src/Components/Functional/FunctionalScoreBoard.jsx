@@ -2,9 +2,11 @@ import "./styles/score-board.css";
 //  Where the score is presented
 
 export function FunctionalScoreBoard({
-  incorrectAnswers,
-  correctAnswers,
-  fishIndex,
+  userInformation:{
+    incorrectAnswers,
+    correctAnswers,
+    fishIndex
+  },
   initialFishes
 }) {
   const answersLeft = initialFishes
