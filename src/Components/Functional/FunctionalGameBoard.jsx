@@ -27,7 +27,7 @@ export function FunctionalGameBoard({
           fishIndex: fishIndex + (!isLastFish() ? 1 : 0),
           incorrectAnswers: incorrectAnswers + (!didGuessFish() && areStillAnswers(answersLeft) ? + 1 : 0), 
           correctAnswers: correctAnswers + (didGuessFish() && areStillAnswers(answersLeft) ? + 1 : 0), 
-          answersLeft: answersLeft - (areStillAnswers(answersLeft) ? 1 : 0)
+          answersLeft: (areStillAnswers(answersLeft) ? answersLeft - 1 : 0) 
         })
         setUserInput('');
       }}>
