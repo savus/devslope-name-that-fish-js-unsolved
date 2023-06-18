@@ -24,39 +24,27 @@ const initialFishes = [
 ];
 
 export function FunctionalApp() {
+
   const [userInformation, setUserInformation] = useState({
-    fishIndex: 0,
-    correctGuesses: 0,
-    incorrectGuesses: 0,
-    answersLeft: initialFishes.length,
+    fishIndex:0,
+    answersLeft:initialFishes.length
   });
 
-  const stillAnswers = (num) => num > 0;
+  const areStillAnswers = (num) => num > 0;
 
   return (
     <>
-      {stillAnswers(userInformation.answersLeft) && (
-        <FunctionalScoreBoard
-          initialFishes={initialFishes}
-          userInformation={userInformation}
-        />
-      )}
-      {stillAnswers(userInformation.answersLeft) && (
-        <FunctionalGameBoard
+      {areStillAnswers(userInformation.answersLeft) && (<FunctionalScoreBoard />)}
+      {areStillAnswers(userInformation.answersLeft) && (
+        <FunctionalGameBoard 
           initialFishes={initialFishes}
           userInformation={userInformation}
           handleUserInformation={(userInformation) => {
             setUserInformation(userInformation);
           }}
-          stillAnswers={stillAnswers}
         />
       )}
-      {!stillAnswers(userInformation.answersLeft) && (
-        <FunctionalFinalScore
-          totalCount={initialFishes.length}
-          correctCount={userInformation.correctGuesses}
-        />
-      )}
+      {!areStillAnswers(userInformation.answersLeft) && (<FunctionalFinalScore />)}
     </>
   );
 }
