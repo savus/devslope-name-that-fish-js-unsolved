@@ -4,14 +4,14 @@ import "./styles/game-board.css";
 export function FunctionalGameBoard({
   initialFishes,
   userInformation:{fishIndex, correctGuesses, incorrectGuesses, answersLeft},
-  handleUserInformation
+  handleUserInformation,
+  stillAnswers
 }) {
   
   const nextFishToName = initialFishes[fishIndex];
   const [userInput, setUserInput] = useState('');
   const didGuessFish = () => (userInput === nextFishToName.name);
   const isLastFish = (fishIndex === initialFishes.length - 1);
-  const stillAnswers = () => answersLeft > 0;
 
   return (
     <div id="game-board">
@@ -22,9 +22,9 @@ export function FunctionalGameBoard({
         e.preventDefault();
         handleUserInformation({
           fishIndex: fishIndex + (!isLastFish ? 1 : 0),
-          correctGuesses: correctGuesses + (didGuessFish() && stillAnswers() ? 1 : 0),
-          incorrectGuesses: incorrectGuesses + (!didGuessFish() && stillAnswers() ? 1 : 0),
-          answersLeft: stillAnswers() ? answersLeft - 1 : 0 
+          correctGuesses: correctGuesses + (didGuessFish() && stillAnswers(answersLeft) ? 1 : 0),
+          incorrectGuesses: incorrectGuesses + (!didGuessFish() && stillAnswers(answersLeft) ? 1 : 0),
+          answersLeft: stillAnswers(answersLeft) ? answersLeft - 1 : 0 
         });
         setUserInput('');
       }}>
@@ -35,7 +35,6 @@ export function FunctionalGameBoard({
           onChange={({target:{value}}) => setUserInput(value)}
           value={userInput}
         />
-        <div> answersLeft: {answersLeft} correctGuesses: {correctGuesses} incorrectGuesses: {incorrectGuesses}</div>
         <input type="submit" />
       </form>
     </div>

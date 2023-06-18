@@ -35,18 +35,30 @@ export function FunctionalApp() {
 
   return (
     <>
-      { stillAnswers(userInformation.answersLeft) &&<FunctionalScoreBoard 
-        initialFishes={initialFishes}
-        userInformation={userInformation}
-      />}
-      { stillAnswers(userInformation.answersLeft) && <FunctionalGameBoard 
-        initialFishes={initialFishes}
-        userInformation={userInformation}
-        handleUserInformation={(userInformation) => {
-          setUserInformation(userInformation);
-        }}
-      />}
-      { !stillAnswers(userInformation.answersLeft) && <FunctionalFinalScore />}
+      { 
+        stillAnswers(userInformation.answersLeft) &&
+        <FunctionalScoreBoard 
+          initialFishes={initialFishes}
+          userInformation={userInformation}
+        />
+      }
+      { 
+        stillAnswers(userInformation.answersLeft) && 
+        <FunctionalGameBoard 
+          initialFishes={initialFishes}
+          userInformation={userInformation}
+          handleUserInformation={(userInformation) => {
+            setUserInformation(userInformation);
+          }}
+          stillAnswers={stillAnswers}
+        />
+      }
+      { 
+        !stillAnswers(userInformation.answersLeft) && 
+        <FunctionalFinalScore 
+          totalCount={initialFishes.length}
+          correctCount={userInformation.correctGuesses}
+        />}
     </>
   );
 }
