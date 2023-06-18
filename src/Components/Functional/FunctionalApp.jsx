@@ -34,8 +34,8 @@ export function FunctionalApp() {
 
   return (
     <>
-      {areStillAnswers(userInformation.answersLeft) && (<FunctionalScoreBoard />)}
-      {areStillAnswers(userInformation.answersLeft) && (
+      {<FunctionalScoreBoard />}
+      {
         <FunctionalGameBoard 
           initialFishes={initialFishes}
           userInformation={userInformation}
@@ -43,8 +43,8 @@ export function FunctionalApp() {
             setUserInformation(userInformation);
           }}
         />
-      )}
-      {!areStillAnswers(userInformation.answersLeft) && (<FunctionalFinalScore />)}
+      }
+      {/* {!areStillAnswers(userInformation.answersLeft) && (<FunctionalFinalScore />)} */}
     </>
   );
 }
