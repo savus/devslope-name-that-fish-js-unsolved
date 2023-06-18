@@ -30,20 +30,23 @@ export function FunctionalApp() {
     incorrectGuesses:0,
     answersLeft: initialFishes.length
   });
+
+  const stillAnswers = (num) => num > 0;
+
   return (
     <>
-      <FunctionalScoreBoard 
+      { stillAnswers(userInformation.answersLeft) &&<FunctionalScoreBoard 
         initialFishes={initialFishes}
         userInformation={userInformation}
-      />
-      <FunctionalGameBoard 
+      />}
+      { stillAnswers(userInformation.answersLeft) && <FunctionalGameBoard 
         initialFishes={initialFishes}
         userInformation={userInformation}
         handleUserInformation={(userInformation) => {
           setUserInformation(userInformation);
         }}
-      />
-      {false && <FunctionalFinalScore />}
+      />}
+      { !stillAnswers(userInformation.answersLeft) && <FunctionalFinalScore />}
     </>
   );
 }
