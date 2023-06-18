@@ -1,14 +1,18 @@
 import "./styles/score-board.css";
 //  Where the score is presented
 
-const incorrectCount = 0;
-const correctCount = 0;
-const answersLeft = ["trout", "salmon", "tuna", "shark"];
-
-export function FunctionalScoreBoard() {
+export function FunctionalScoreBoard({
+  incorrectAnswers,
+  correctAnswers,
+  fishIndex,
+  initialFishes
+}) {
+  const answersLeft = initialFishes
+    .map((fish) => fish.name)
+    .slice(fishIndex); 
   return (
     <div id="score-board">
-      <div>Incorrect 🔻: {incorrectCount}</div>
+      <div>Incorrect 🔻: {incorrectAnswers}</div>
       <div id="choices-left">
         {answersLeft.map((answer) => (
           <div key={answer} className="choice">
@@ -16,7 +20,7 @@ export function FunctionalScoreBoard() {
           </div>
         ))}
       </div>
-      <div>Correct ✅: {correctCount}</div>
+      <div>Correct ✅: {correctAnswers}</div>
     </div>
   );
 }

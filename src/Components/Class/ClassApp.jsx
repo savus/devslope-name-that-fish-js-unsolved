@@ -32,12 +32,17 @@ export class ClassApp extends Component {
   };
 
   areStillAnswers = (num) => num > 0;
-  
   render() {
+    const {incorrectAnswers, correctAnswers, fishIndex} = this.state;
     return (
       <>
         <>
-          {<ClassScoreBoard />}
+          {<ClassScoreBoard
+            initialFishes={initialFishes}
+            incorrectAnswers={incorrectAnswers}
+            correctAnswers={correctAnswers}
+            fishIndex={fishIndex}
+          />}
           {<ClassGameBoard 
             initialFishes={initialFishes}
             userInformation={this.state}

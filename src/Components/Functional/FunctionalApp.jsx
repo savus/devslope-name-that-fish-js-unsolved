@@ -36,7 +36,13 @@ export function FunctionalApp() {
 
   return (
     <>
-      {<FunctionalScoreBoard />}
+      {
+        <FunctionalScoreBoard 
+          incorrectAnswers={userInformation.incorrectAnswers}
+          correctAnswers={userInformation.correctAnswers}
+          fishIndex={userInformation.fishIndex}
+          initialFishes={initialFishes}
+        />}
       {
         <FunctionalGameBoard 
           initialFishes={initialFishes}
