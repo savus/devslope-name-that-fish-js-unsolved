@@ -25,8 +25,8 @@ const initialFishes = [
 
 export class ClassApp extends Component {
   state = {
-    incorrectCount: 0,
-    correctCount: 0,
+    incorrectAnswers: 0,
+    correctAnswers: 0,
     answersLeft:initialFishes.length,
     fishIndex:0
   };
@@ -37,16 +37,17 @@ export class ClassApp extends Component {
     return (
       <>
         <>
-          {this.areStillAnswers(this.state.answersLeft) && (<ClassScoreBoard />)}
-          {this.areStillAnswers(this.state.answersLeft) && (<ClassGameBoard 
+          {<ClassScoreBoard />}
+          {<ClassGameBoard 
             initialFishes={initialFishes}
             userInformation={this.state}
             handleUserInformation={(userInformation) => {
               this.setState(userInformation);
             }}
-          />)}
+            areStillAnswers={this.areStillAnswers}
+          />}
         </>
-        {!this.areStillAnswers(this.state.answersLeft) && (<ClassFinalScore />)}
+        {false && (<ClassFinalScore />)}
       </>
     );
   }

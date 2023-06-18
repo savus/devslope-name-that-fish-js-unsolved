@@ -27,6 +27,8 @@ export function FunctionalApp() {
 
   const [userInformation, setUserInformation] = useState({
     fishIndex:0,
+    correctAnswers:0,
+    incorrectAnswers:0,
     answersLeft:initialFishes.length
   });
 
@@ -42,6 +44,7 @@ export function FunctionalApp() {
           handleUserInformation={(userInformation) => {
             setUserInformation(userInformation);
           }}
+          areStillAnswers={areStillAnswers}
         />
       }
       {/* {!areStillAnswers(userInformation.answersLeft) && (<FunctionalFinalScore />)} */}
