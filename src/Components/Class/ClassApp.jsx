@@ -27,8 +27,8 @@ export class ClassApp extends Component {
   state = {
     incorrectAnswers: 0,
     correctAnswers: 0,
-    answersLeft:initialFishes.length,
-    fishIndex:0
+    answersLeft: initialFishes.length,
+    fishIndex: 0,
   };
 
   areStillAnswers = (num) => num > 0;
@@ -36,26 +36,29 @@ export class ClassApp extends Component {
     return (
       <>
         <>
-          {this.areStillAnswers(this.state.answersLeft) &&
-          <ClassScoreBoard
-            initialFishes={initialFishes}
-            userInformation={this.state}
-          />}
-          {this.areStillAnswers(this.state.answersLeft) &&
-          <ClassGameBoard 
-            initialFishes={initialFishes}
-            userInformation={this.state}
-            handleUserInformation={(userInformation) => {
-              this.setState(userInformation);
-            }}
-            areStillAnswers={this.areStillAnswers}
-          />}
+          {this.areStillAnswers(this.state.answersLeft) && (
+            <ClassScoreBoard
+              fishList={initialFishes}
+              userInformation={this.state}
+            />
+          )}
+          {this.areStillAnswers(this.state.answersLeft) && (
+            <ClassGameBoard
+              initialFishes={initialFishes}
+              userInformation={this.state}
+              handleUserInformation={(userInformation) => {
+                this.setState(userInformation);
+              }}
+              areStillAnswers={this.areStillAnswers}
+            />
+          )}
         </>
-        {!this.areStillAnswers(this.state.answersLeft) && 
-        (<ClassFinalScore 
-          correctAnswers={this.state.correctAnswers}
-          totalCount={initialFishes.length}
-        />)}
+        {!this.areStillAnswers(this.state.answersLeft) && (
+          <ClassFinalScore
+            correctAnswers={this.state.correctAnswers}
+            totalCount={initialFishes.length}
+          />
+        )}
       </>
     );
   }
