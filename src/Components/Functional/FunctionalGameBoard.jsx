@@ -2,15 +2,12 @@ import { useState } from "react";
 import "./styles/game-board.css";
 
 export function FunctionalGameBoard({
-  initialFishes,
-  userInformation: { fishIndex, incorrectAnswers, correctAnswers, answersLeft },
-  handleUserInformation,
-  areStillAnswers,
+  listOfFish,
+  handleGuess,
+  fishIndex
 }) {
-  const nextFishToName = initialFishes[fishIndex];
+  const nextFishToName = listOfFish[fishIndex];
   const [userInput, setUserInput] = useState("");
-  const isLastFish = () => fishIndex === initialFishes.length - 1;
-  const didGuessFish = () => userInput === nextFishToName.name;
   return (
     <div id="game-board">
       <div id="fish-container">
@@ -20,16 +17,7 @@ export function FunctionalGameBoard({
         id="fish-guess-form"
         onSubmit={(e) => {
           e.preventDefault();
-          handleUserInformation({
-            fishIndex: fishIndex + (!isLastFish() ? 1 : 0),
-            incorrectAnswers:
-              incorrectAnswers +
-              (!didGuessFish() && areStillAnswers(answersLeft) ? +1 : 0),
-            correctAnswers:
-              correctAnswers +
-              (didGuessFish() && areStillAnswers(answersLeft) ? +1 : 0),
-            answersLeft: areStillAnswers(answersLeft) ? answersLeft - 1 : 0,
-          });
+          handleGuess(userInput);
           setUserInput("");
         }}
       >

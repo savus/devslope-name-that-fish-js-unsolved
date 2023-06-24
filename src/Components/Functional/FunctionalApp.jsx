@@ -24,36 +24,44 @@ const initialFishes = [
 ];
 
 export function FunctionalApp() {
-  const [userInformation, setUserInformation] = useState({
-    fishIndex: 0,
-    correctAnswers: 0,
-    incorrectAnswers: 0,
-    answersLeft: initialFishes.length,
-  });
+  const [fishIndex, setFishIndex] = useState(0);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [incorrectAnswers, setIncorrectAnswers] = useState(0);
+  const [answersLeft, setAnswersLeft] = useState(initialFishes.length);
+  const doAnswersStillExist = answersLeft > 0;
 
-  const areStillAnswers = (num) => num > 0;
+  const handleGuess = (guess) => {
+    setFishIndex(fishIndex + 1);
+    if (initialFishes[fishIndex].name === guess) {
+      setCorrectAnswers(correctAnswers + 1);
+    } else {
+      setIncorrectAnswers(incorrectAnswers + 1);
+    }
+    setAnswersLeft(answersLeft - 1);
+
+    console.log(fishIndex, correctAnswers, incorrectAnswers, answersLeft);
+  };
 
   return (
     <>
-      {areStillAnswers(userInformation.answersLeft) && (
-        <FunctionalScoreBoard
-          userInformation={userInformation}
-          fishList={initialFishes}
+      {doAnswersStillExist && (
+        <FunctionalScoreBoard 
+          listOfFish={initialFishes}
+          incorrectAnswers={incorrectAnswers}
+          correctAnswers={correctAnswers}
+          fishIndex={fishIndex}  
         />
       )}
-      {areStillAnswers(userInformation.answersLeft) && (
+      {doAnswersStillExist && (
         <FunctionalGameBoard
-          initialFishes={initialFishes}
-          userInformation={userInformation}
-          handleUserInformation={(userInformation) => {
-            setUserInformation(userInformation);
-          }}
-          areStillAnswers={areStillAnswers}
+          listOfFish={initialFishes}
+          handleGuess={handleGuess}
+          fishIndex={fishIndex}
         />
       )}
-      {!areStillAnswers(userInformation.answersLeft) && (
+      {!doAnswersStillExist && (
         <FunctionalFinalScore
-          correctAnswers={userInformation.correctAnswers}
+          correctAnswers={correctAnswers}
           totalCount={initialFishes.length}
         />
       )}
