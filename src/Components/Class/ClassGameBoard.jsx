@@ -6,11 +6,7 @@ export class ClassGameBoard extends Component {
     userInput: "",
   };
   render() {
-    const {
-      fishList,
-      fishIndex,
-      handleGuess
-    } = this.props;
+    const { fishList, fishIndex, handleGuess } = this.props;
     const nextFishToName = fishList[fishIndex];
     const { userInput } = this.state;
 
@@ -23,7 +19,7 @@ export class ClassGameBoard extends Component {
           id="fish-guess-form"
           onSubmit={(e) => {
             e.preventDefault();
-            handleGuess(userInput);           
+            handleGuess(userInput);
             this.setState({ userInput: "" });
           }}
         >

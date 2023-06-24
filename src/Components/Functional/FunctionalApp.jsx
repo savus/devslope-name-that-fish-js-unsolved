@@ -27,7 +27,7 @@ export function FunctionalApp() {
   const [fishIndex, setFishIndex] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [incorrectAnswers, setIncorrectAnswers] = useState(0);
-  
+
   const doAnswersStillExist = initialFishes.length - fishIndex > 0;
 
   const handleGuess = (guess) => {
@@ -42,11 +42,11 @@ export function FunctionalApp() {
   return (
     <>
       {doAnswersStillExist && (
-        <FunctionalScoreBoard 
+        <FunctionalScoreBoard
           listOfFish={initialFishes}
           incorrectAnswers={incorrectAnswers}
           correctAnswers={correctAnswers}
-          fishIndex={fishIndex}  
+          fishIndex={fishIndex}
         />
       )}
       {doAnswersStillExist && (

@@ -1,11 +1,7 @@
 import { useState } from "react";
 import "./styles/game-board.css";
 
-export function FunctionalGameBoard({
-  listOfFish,
-  handleGuess,
-  fishIndex
-}) {
+export function FunctionalGameBoard({ listOfFish, handleGuess, fishIndex }) {
   const nextFishToName = listOfFish[fishIndex];
   const [userInput, setUserInput] = useState("");
   return (

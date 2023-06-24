@@ -3,12 +3,8 @@ import "./styles/score-board.css";
 
 export class ClassScoreBoard extends Component {
   render() {
-    const {
-      fishList,
-      fishIndex,
-      incorrectAnswers,
-      correctAnswers
-    } = this.props;
+    const { fishList, fishIndex, incorrectAnswers, correctAnswers } =
+      this.props;
     const remainingFish = fishList.map((fish) => fish.name).slice(fishIndex);
     return (
       <div id="score-board">

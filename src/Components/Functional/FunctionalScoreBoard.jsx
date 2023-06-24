@@ -5,7 +5,7 @@ export function FunctionalScoreBoard({
   listOfFish,
   fishIndex,
   incorrectAnswers,
-  correctAnswers
+  correctAnswers,
 }) {
   const remainingNames = listOfFish.map((fish) => fish.name).slice(fishIndex);
   return (
