@@ -7,20 +7,13 @@ export class ClassGameBoard extends Component {
   };
   render() {
     const {
-      initialFishes,
-      areStillAnswers,
-      handleUserInformation,
-      userInformation: {
-        fishIndex,
-        correctAnswers,
-        incorrectAnswers,
-        answersLeft,
-      },
+      fishList,
+      fishIndex,
+      handleGuess
     } = this.props;
-    const nextFishToName = initialFishes[fishIndex];
+    const nextFishToName = fishList[fishIndex];
     const { userInput } = this.state;
-    this.isLastFish = () => fishIndex === initialFishes.length - 1;
-    this.didGuessFish = () => userInput === nextFishToName.name;
+
     return (
       <div id="game-board">
         <div id="fish-container">
@@ -30,16 +23,7 @@ export class ClassGameBoard extends Component {
           id="fish-guess-form"
           onSubmit={(e) => {
             e.preventDefault();
-            handleUserInformation({
-              fishIndex: fishIndex + (!this.isLastFish() ? 1 : 0),
-              correctAnswers:
-                correctAnswers +
-                (this.didGuessFish() && areStillAnswers(answersLeft) ? 1 : 0),
-              incorrectAnswers:
-                incorrectAnswers +
-                (!this.didGuessFish() && areStillAnswers(answersLeft) ? 1 : 0),
-              answersLeft: areStillAnswers(answersLeft) ? answersLeft - 1 : 0,
-            });
+            handleGuess(userInput);           
             this.setState({ userInput: "" });
           }}
         >

@@ -38,8 +38,6 @@ export function FunctionalApp() {
       setIncorrectAnswers(incorrectAnswers + 1);
     }
     setAnswersLeft(answersLeft - 1);
-
-    console.log(fishIndex, correctAnswers, incorrectAnswers, answersLeft);
   };
 
   return (

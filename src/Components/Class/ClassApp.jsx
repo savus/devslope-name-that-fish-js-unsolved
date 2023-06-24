@@ -31,31 +31,42 @@ export class ClassApp extends Component {
     fishIndex: 0,
   };
 
-  areStillAnswers = (num) => num > 0;
   render() {
+    const {answersLeft, correctAnswers, fishIndex, incorrectAnswers} = this.state;
+    this.doAnswersStillExist = answersLeft > 0;
+    
+    this.handleGuess = (guess) => {
+      this.setState({fishIndex: fishIndex + 1});
+      if (initialFishes[fishIndex].name === guess) {
+        this.setState({correctAnswers: correctAnswers + 1});
+      } else {
+        this.setState({incorrectAnswers: incorrectAnswers + 1});
+      }
+      this.setState({answersLeft: answersLeft - 1});
+    };
+
     return (
       <>
         <>
-          {this.areStillAnswers(this.state.answersLeft) && (
+          {(this.doAnswersStillExist) && (
             <ClassScoreBoard
               fishList={initialFishes}
-              userInformation={this.state}
+              fishIndex={fishIndex}
+              incorrectAnswers={incorrectAnswers}
+              correctAnswers={correctAnswers}
             />
           )}
-          {this.areStillAnswers(this.state.answersLeft) && (
+          {this.doAnswersStillExist && (
             <ClassGameBoard
-              initialFishes={initialFishes}
-              userInformation={this.state}
-              handleUserInformation={(userInformation) => {
-                this.setState(userInformation);
-              }}
-              areStillAnswers={this.areStillAnswers}
+              fishList={initialFishes}
+              fishIndex={fishIndex}
+              handleGuess={this.handleGuess}
             />
           )}
         </>
-        {!this.areStillAnswers(this.state.answersLeft) && (
+        {!this.doAnswersStillExist && (
           <ClassFinalScore
-            correctAnswers={this.state.correctAnswers}
+            correctAnswers={correctAnswers}
             totalCount={initialFishes.length}
           />
         )}
