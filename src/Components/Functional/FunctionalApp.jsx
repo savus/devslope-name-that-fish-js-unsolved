@@ -27,8 +27,8 @@ export function FunctionalApp() {
   const [fishIndex, setFishIndex] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [incorrectAnswers, setIncorrectAnswers] = useState(0);
-  const [answersLeft, setAnswersLeft] = useState(initialFishes.length);
-  const doAnswersStillExist = answersLeft > 0;
+  
+  const doAnswersStillExist = initialFishes.length - fishIndex > 0;
 
   const handleGuess = (guess) => {
     setFishIndex(fishIndex + 1);
@@ -37,7 +37,6 @@ export function FunctionalApp() {
     } else {
       setIncorrectAnswers(incorrectAnswers + 1);
     }
-    setAnswersLeft(answersLeft - 1);
   };
 
   return (

@@ -7,12 +7,12 @@ export function FunctionalScoreBoard({
   incorrectAnswers,
   correctAnswers
 }) {
-  const answersLeft = listOfFish.map((fish) => fish.name).slice(fishIndex);
+  const remainingNames = listOfFish.map((fish) => fish.name).slice(fishIndex);
   return (
     <div id="score-board">
       <div>Incorrect 🔻: {incorrectAnswers}</div>
       <div id="choices-left">
-        {answersLeft.map((answer) => (
+        {remainingNames.map((answer) => (
           <div key={answer} className="choice">
             {answer}
           </div>
