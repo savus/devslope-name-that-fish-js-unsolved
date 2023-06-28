@@ -6,14 +6,13 @@ export class ClassGameBoard extends Component {
     userInput: "",
   };
   render() {
-    const { fishList, fishIndex, handleGuess } = this.props;
-    const nextFishToName = fishList[fishIndex];
+    const { fishIndex, handleGuess } = this.props;
     const { userInput } = this.state;
 
     return (
       <div id="game-board">
         <div id="fish-container">
-          <img src={nextFishToName.url} alt={nextFishToName.name} />
+          <img src={fishIndex.url} alt={fishIndex.name} />
         </div>
         <form
           id="fish-guess-form"

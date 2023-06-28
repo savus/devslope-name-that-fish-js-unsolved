@@ -1,13 +1,12 @@
 import { useState } from "react";
 import "./styles/game-board.css";
 
-export function FunctionalGameBoard({ listOfFish, handleGuess, fishIndex }) {
-  const nextFishToName = listOfFish[fishIndex];
+export function FunctionalGameBoard({ handleGuess, fishIndex }) {
   const [userInput, setUserInput] = useState("");
   return (
     <div id="game-board">
       <div id="fish-container">
-        <img src={nextFishToName.url} alt={nextFishToName.name} />
+        <img src={fishIndex.url} alt={fishIndex.name} />
       </div>
       <form
         id="fish-guess-form"

@@ -39,21 +39,21 @@ export function FunctionalApp() {
     }
   };
 
+  const fishData = initialFishes.map((fish) => fish.name).slice(fishIndex);
+
   return (
     <>
       {doAnswersStillExist && (
         <FunctionalScoreBoard
-          listOfFish={initialFishes}
+          answersLeft={fishData}
           incorrectAnswers={incorrectAnswers}
           correctAnswers={correctAnswers}
-          fishIndex={fishIndex}
         />
       )}
       {doAnswersStillExist && (
         <FunctionalGameBoard
-          listOfFish={initialFishes}
           handleGuess={handleGuess}
-          fishIndex={fishIndex}
+          fishIndex={initialFishes[fishIndex]}
         />
       )}
       {!doAnswersStillExist && (

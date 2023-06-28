@@ -43,21 +43,21 @@ export class ClassApp extends Component {
       }
     };
 
+    this.answersLeft = initialFishes.map((fish) => fish.name).slice(fishIndex);
+
     return (
       <>
         <>
           {this.doAnswersStillExist && (
             <ClassScoreBoard
-              fishList={initialFishes}
-              fishIndex={fishIndex}
+              answersLeft={this.answersLeft}
               incorrectAnswers={incorrectAnswers}
               correctAnswers={correctAnswers}
             />
           )}
           {this.doAnswersStillExist && (
             <ClassGameBoard
-              fishList={initialFishes}
-              fishIndex={fishIndex}
+              fishIndex={initialFishes[fishIndex]}
               handleGuess={this.handleGuess}
             />
           )}
